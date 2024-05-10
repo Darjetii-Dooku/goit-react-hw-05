@@ -1,12 +1,19 @@
-import css from './Loader.module.css'
-const Loader = () => {
-    return (
-        <div className={css.card}>
-            <div className={css.image}></div>
-            <div className={css.info}>
-                <h2 className={css.title}></h2>
-            </div>
-        </div>
-    )}
+import { Audio } from "react-loader-spinner";
 
-export default Loader
+const Loader = () => {
+  return (
+    <>
+      <Audio
+        height="80"
+        width="80"
+        radius="9"
+        color="green"
+        ariaLabel="three-dots-loading"
+        wrapperStyle
+        wrapperClass
+      />
+    </>
+  );
+};
+
+export default Loader;
