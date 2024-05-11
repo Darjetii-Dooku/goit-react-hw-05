@@ -8,21 +8,24 @@ import LoadMoreBtn from "../components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../components/ImageModal/ImageModal";
 import { Toaster } from "react-hot-toast";
 import { fetchMoviesBySearch } from "../services/api";
+import { useSearchParams } from "react-router-dom";
 // import Loader from "../components/Loader/Loader";
 function MoviesPage() {
   const [movies, setMovies] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [Iserror, setError] = useState(false);
-  const [query, setQuerry] = useState("");
+//   const [query, setQuerry] = useState("");
 //   const [page, setPage] = useState(1);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImg, setModalImg] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const onSetQuery = (query) => {
-    setQuerry(query);
+    setSearchParams({ query: query });
   };
   useEffect(() => {
-    if (query.length === 0) return;
+    const query = searchParams.get("query");
+    if (!query) return;
     console.log("hi");
     async function fetchMovies() {
       try {
@@ -37,7 +40,7 @@ function MoviesPage() {
       }
     }
     fetchMovies();
-  }, [query]);
+  }, [searchParams]);
 //   const openModal = (img) => {
 //     console.dir(img);
 //     setModalImg(img);
